@@ -1,0 +1,56 @@
+{
+  "name": "go-cold",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.22",
+    "@fortawesome/free-solid-svg-icons": "^5.10.2",
+    "@fortawesome/react-fontawesome": "^0.1.4",
+    "bootstrap": "^4.3.1",
+    "connected-react-router": "^6.5.2",
+    "fontfaceobserver": "^2.1.0",
+    "history": "^4.9.0",
+    "hoist-non-react-statics": "^3.3.0",
+    "immer": "^3.2.0",
+    "intl": "^1.2.5",
+    "invariant": "^2.2.4",
+    "lodash": "^4.17.15",
+    "offline-plugin": "^5.0.7",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-app-polyfill": "^1.0.2",
+    "react-dom": "^16.9.0",
+    "react-helmet": "^5.2.1",
+    "react-intl": "2.8.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.1",
+    "reactstrap": "^8.0.1",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.0.5",
+    "reselect": "^4.0.0",
+    "sanitize.css": "^11.0.0",
+    "styled-components": "^4.3.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "./script/build.sh",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
