@@ -6,7 +6,10 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.22",
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "bootstrap": "^4.3.1",
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "clsx": "^1.1.1",
     "connected-react-router": "^6.5.2",
     "fontfaceobserver": "^2.1.0",
     "history": "^4.9.0",
@@ -24,8 +27,7 @@
     "react-intl": "2.8.0",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
-    "react-scripts": "3.1.1",
-    "reactstrap": "^8.0.1",
+    "react-scripts": "^3.4.1",
     "redux": "^4.0.4",
     "redux-saga": "^1.0.5",
     "reselect": "^4.0.0",
@@ -34,7 +36,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "./script/build.sh",
+    "prebuild": "rimraf build",
+    "build": "npm-run-all build:*",
+    "build:app": "INLINE_RUNTIME_CHUNK=false react-scripts build",
+    "build:bg": "webpack --mode production ./src/background/index.js --output ./build/background.js",
+    "build:bg:dev": "webpack --mode development ./src/background/index.js --output ./build/background.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -52,5 +58,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "npm-run-all": "^4.1.5",
+    "webpack-cli": "^3.3.12"
   }
 }

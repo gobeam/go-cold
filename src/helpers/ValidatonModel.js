@@ -22,7 +22,7 @@ class Validator {
 		if (typeof value === 'string') {
 			return "";
 		}
-		return "isNotString";
+		return "value must be string";
 	};
 	
 	/**
@@ -34,7 +34,15 @@ class Validator {
 		if (value !== '' && value !== null && typeof value !== 'undefined') {
 			return "";
 		}
-		return "isNotEmpty";
+		return "value cannot be empty";
+	};
+	
+	isValidURL = (value) => {
+		let res = value.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+		if(res !== null){
+			return ""
+		}
+		return "invalid url"
 	};
 	
 	/**
@@ -46,7 +54,7 @@ class Validator {
 		if (!isNaN(value)) {
 			return "";
 		}
-		return "isNotInt";
+		return "value must be integer";
 	};
 	
 	/**
@@ -58,7 +66,7 @@ class Validator {
 		if (!isNaN(value)) {
 			return "";
 		}
-		return "isNotSelected";
+		return "value not selected";
 	};
 	
 	/**
@@ -70,7 +78,7 @@ class Validator {
 		if (value > 0) {
 			return "";
 		}
-		return "isNotPositive";
+		return "value must be positive";
 	};
 	
 	/** check if value is in email format
@@ -82,7 +90,7 @@ class Validator {
 		if (re.test(String(value).toLowerCase())) {
 			return "";
 		} else {
-			return "isNotEmail";
+			return "value must be email";
 		}
 	};
 	
@@ -96,7 +104,7 @@ class Validator {
 		if (value) {
 			return "";
 		} else {
-			return "isNotTrue";
+			return "value must be true";
 		}
 	};
 	
@@ -109,7 +117,7 @@ class Validator {
 	isAddress = (value) => {
 		if (!/^(0x)?[0-9a-f]{40}$/i.test(value)) {
 			// check if it has the basic requirements of an address
-			return "isNotAddress!";
+			return "value must be valid ethereum address!";
 		} else if (/^(0x)?[0-9a-f]{40}$/.test(value) || /^(0x)?[0-9A-F]{40}$/.test(value)) {
 			// If it's all small caps or all all caps, return true
 			return "";

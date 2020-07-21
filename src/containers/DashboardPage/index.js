@@ -11,7 +11,6 @@ import {useInjectSaga} from 'utils/injectSaga';
 import {isLoggedAction} from 'containers/DashboardPage/actions';
 
 import saga from 'containers/DashboardPage/saga';
-import {Col, Container, Row} from "reactstrap";
 
 export default function DashboardPage() {
 	const dispatch = useDispatch();
@@ -24,11 +23,6 @@ export default function DashboardPage() {
 	}, []);
 	
 	return (
-		<Container>
-			<Row>
-				<Col sm="12" md={{size: 6, offset: 3}}>This Is Dashboard!
-				</Col>
-			</Row>
-		</Container>
+		<h1>Dashboard</h1>
 	);
 }
