@@ -25,7 +25,6 @@ import {
 } from 'containers/HomePage/selectors';
 import {
   checkIfExistsInArray,
-  getBaseUrl,
   getObject,
   KEY_BLOCKED_URL,
   returnItemFromArray,
@@ -84,6 +83,7 @@ export function* getCurrentTabUrl() {
 
 export function* addUrlToBlockedList() {
   const url = yield select(makeUrlSelector());
+  let current_tab_url = yield getCurrentTabDomain().next().value;
   const blockedAlways = yield select(makeBlockAlwaysSelector());
   const blockedInterval = yield select(makeBlockIntervalSelector());
   let list = getObject(KEY_BLOCKED_URL);
@@ -110,11 +110,13 @@ export function* addUrlToBlockedList() {
       type: 'success',
     }),
   );
-  /* eslint-disable no-undef */
-  chrome.tabs.query({ active: true, currentWindow: true }, function(arrayOfTabs) {
-    chrome.tabs.reload(arrayOfTabs[0].id);
-  });
-  /* eslint-enable no-undef */
+  if (current_tab_url.includes(url)) {
+    /* eslint-disable no-undef */
+    chrome.tabs.query({ active: true, currentWindow: true }, function(arrayOfTabs) {
+      chrome.tabs.reload(arrayOfTabs[0].id);
+    });
+    /* eslint-enable no-undef */
+  }
 }
 
 export default function* homePageSaga() {
