@@ -2,7 +2,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/huchenme/hacker-tab-extension/blob/master/LICENSE)
 
 **Go Cold** is Chrome Browser Extension which you can use to block website with options to block it on timer or block it always. (You can also use it on FireFox Browser).
-__If you like this extension please give a star.__
+_If you like this extension please give a star_
 
 * [Why?](#why)
 * [Installation](#installation)
@@ -19,7 +19,7 @@ Sometime involuntarily we tend to click or try to access those sites and go into
 
 ## Installation
 1. For People without Programming language knowledge:
-* Go to this [release url](https://github.com/gobeam/go-cold/releases/download/v1.0.0/build.zip).
+* Download zip file from [here](https://github.com/gobeam/go-cold/releases/download/v1.0.0/build.zip).
 * Download the zip file and unzip it you will find js and html files inside that folder.
 * Open Chrome browser and enter following url in search bar: chrome://extensions
 
