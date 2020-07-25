@@ -10,9 +10,6 @@ import {
 chrome.runtime.onInstalled.addListener(() => {
   console.log('onInstalled....');
   initializeTask();
-  // console.log('schedule watchdog alarm to 5 minutes...');
-  // chrome.alarms.create('watchdog', { periodInMinutes: 5 });
-  // startRequest();
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -32,40 +29,24 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
       let element = returnItemFromArray(blockedList.blocked_url, 'url', domain);
       if (!element.blockedAlways) {
         let blockedDateTime = new Date(element.time);
-        
         let addedTime = blockedDateTime.setMinutes(blockedDateTime.getMinutes() + parseInt(element.blockedInterval));
-        
-        // let addedTime = blockedDateTime + (parseInt(element.blockedInterval) * 60)
-        // console.log(addedTime,'addedTime', addedTime > Date.now())
         if (addedTime > new Date()) {
           redirect = true;
         } else {
           let index = returnIndexOf(blockedList.blocked_url, 'url', domain);
           blockedList.blocked_url.splice(index,1);
-          // let filtered = blockedList.blocked_url.filter(function(el) { return el.url != domain; });
-          // blockedList.blocked_url = []
-          // blockedList.blocked_url.push(filtered)
           setObject(KEY_BLOCKED_URL, blockedList);
         }
       } else {
         redirect = true;
       }
       if (redirect) {
-        let redirectUrl = chrome.extension.getURL('blocked.html') + '?url=' + encodeURIComponent(tab.url);
+        let redirectUrl = chrome.extension.getURL('blocked.html');
         chrome.tabs.update(tabId, { url: redirectUrl });
       }
     }
   }
 });
-
-
-// chrome.webRequest.onBeforeRequest.addListener(
-//   function(details) {
-//     return { cancel: details.url.indexOf('://www.facebook.com/') != -1 };
-//   },
-//   { urls: ['<all_urls>'] },
-//   ['blocking'],
-// );
 
 const initializeTask = () => {
 

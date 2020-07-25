@@ -5,21 +5,18 @@
   "description": "Block distracting website with Go Cold",
   "permissions": [
     "background",
-    "contextMenus",
-    "webRequest",
-    "webRequestBlocking",
     "tabs",
     "<all_urls>",
     "cookies"
   ],
   "icons": {
-    "512": "logo512.png"
+    "512": "android-chrome-512x512.png"
   },
  "content_security_policy": "script-src 'self' 'sha256-Tfg0jYS77xUVcGaalanwt66CUO1qY9WeFqml5BdBBM8='; object-src 'self'",
 
   "browser_action": {
     "default_title": "Go Cold",
-    "default_icon": "logo512.png",
+    "default_icon": "android-chrome-512x512.png",
     "default_popup": "index.html"
   },
   "background": {

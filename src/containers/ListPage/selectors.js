@@ -9,8 +9,13 @@ const makeBlockedListSelector = () =>
     substate => substate.blockedList,
   );
 
-
+const makeUnblockSelectedIndexSelector = () =>
+  createSelector(
+    selectHome,
+    substate => substate.deleteIndex,
+  );
 
 export {
   makeBlockedListSelector,
+  makeUnblockSelectedIndexSelector
 };

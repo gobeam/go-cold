@@ -3,7 +3,7 @@
  * HomePage
  *
  */
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useInjectSaga } from 'utils/injectSaga';
 // Import Actions
@@ -52,17 +52,17 @@ import Tooltip from '@material-ui/core/Tooltip';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import FormGroup from '@material-ui/core/FormGroup';
-import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
 import { enqueueSnackbarAction } from 'containers/SnackBar/actions';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import history from 'utils/history';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-    },
+    minWidth: 275,
   },
   small: {
     width: theme.spacing(3),
@@ -117,11 +117,12 @@ export default function HomePage() {
   
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
-  const [loading, setLoading] = React.useState(false);
-  const [success, setSuccess] = React.useState(false);
-  const timer = React.useRef();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const timer = useRef();
+  const fetchCurrentTabUrlAction = () => dispatch(getCurrentTabBaseUrlAction());
   
-  const { url, errors, currentBaseUrl, alreadyAdded, blockAlways, blockInterval, manualAdd, addedUrlDetail } = useSelector(
+  const { url, errors, currentBaseUrl, alreadyAdded, blockAlways, blockInterval, manualAdd } = useSelector(
     stateSelector,
   );
   const buttonClassname = clsx({
@@ -149,7 +150,7 @@ export default function HomePage() {
   };
   
   useEffect(() => {
-    dispatch(getCurrentTabBaseUrlAction());
+    fetchCurrentTabUrlAction();
     return () => {
       clearTimeout(timer.current);
     };
@@ -165,7 +166,7 @@ export default function HomePage() {
         dispatch(changeField('url', currentBaseUrl));
         dispatch(addBlockedUrlAction());
         dispatch(currentUrlAlreadyAddedAction());
-      }, 1000);
+      }, 500);
     } else {
       dispatch(enqueueSnackbarAction({
         message: 'You must add block interval or select to block always.',
@@ -177,87 +178,107 @@ export default function HomePage() {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12}>
-        {!alreadyAdded && currentBaseUrl && currentBaseUrl.length > 0 ? <List dense={false}>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar className={classes.small}>
-                <ArrowForwardIosIcon style={{ fontSize: 10 }}/>
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={currentBaseUrl}
-              secondary={blockAlways ? 'Block always is on' : `Block for ${blockInterval} ${blockInterval > 1 ? 'mins' : 'min'}`}
-            />
-            <ListItemSecondaryAction>
-              <div className={classes.wrapper}>
-                <Fab
-                  size="small"
-                  aria-label="save"
-                  color="primary"
-                  className={buttonClassname}
-                  onClick={handleButtonClick}
-                >
-                  {success ? <CheckIcon/> : <AddIcon/>}
-                </Fab>
-                {loading && <CircularProgress size={48} className={classes.fabProgress}/>}
-              </div>
-            </ListItemSecondaryAction>
-          </ListItem>
-        </List> : ''}
-        
-        <form className={classes.root} onSubmit={submitForm} noValidate autoComplete="off">
-          {manualAdd ? <FormGroup row>
-            <TextField
-              name="url"
-              onChange={onChangeField}
-              error={!!errors.url}
-              id="outlined-error-helper-text"
-              label="Add Url"
-              value={url}
-              helperText={errors.url}
-              variant="outlined"
-            />
-          </FormGroup> : ''}
-          
-          {manualAdd || (!alreadyAdded && currentBaseUrl && currentBaseUrl.length > 0) ?
-            <Fragment><FormGroup row>
-              <FormControlLabel
-                control={<Switch checked={blockAlways} onChange={onChangeSwitch} name="blockAlways" color="primary"/>}
-                label="Block Always"
-              />
-            </FormGroup>
+        <Card className={classes.root} variant="outlined">
+          <CardContent>
+            
+            {!alreadyAdded && currentBaseUrl && currentBaseUrl.length > 0 ?
+              <List dense={false}>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar className={classes.small}>
+                      <ArrowForwardIosIcon style={{ fontSize: 10 }}/>
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={currentBaseUrl}
+                    secondary={blockAlways ? 'Block always is on' : `Block for ${blockInterval} ${blockInterval > 1 ? 'mins' : 'min'}`}
+                  />
+                  <ListItemSecondaryAction>
+                    <div className={classes.wrapper}>
+                      <Fab
+                        size="small"
+                        aria-label="save"
+                        color="primary"
+                        className={buttonClassname}
+                        onClick={handleButtonClick}
+                      >
+                        {success ? <CheckIcon/> : <AddIcon/>}
+                      </Fab>
+                      {loading && <CircularProgress size={48} className={classes.fabProgress}/>}
+                    </div>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              </List> : 'Nothing to Add'}
+            
+            <form className={classes.root} onSubmit={submitForm} noValidate autoComplete="off">
+              {manualAdd ? <FormGroup row>
+                <TextField
+                  name="url"
+                  onChange={onChangeField}
+                  error={!!errors.url}
+                  id="outlined-error-helper-text"
+                  label="Add Url"
+                  value={url}
+                  helperText={errors.url}
+                  variant="outlined"
+                />
+              </FormGroup> : ''}
               
-              <Box display="flex">
-                <Box m="auto">
-                  {!blockAlways ? 'or' : ''}
-                </Box>
-              </Box></Fragment> : ''}
-          
-          {!blockAlways && (manualAdd || ( !alreadyAdded && currentBaseUrl && currentBaseUrl.length > 0)) ? <FormGroup row>
-            <Typography
-              gutterBottom>{`Block Interval (${blockInterval} ${blockInterval > 1 ? ' mins' : ' min'})`}</Typography>
-            <Slider
-              onChange={onChangeSlider}
-              ValueLabelComponent={ValueLabelComponent}
-              aria-label={`Block Interval (${blockInterval} min)`}
-              value={blockInterval}
-              max={60}
-            />
-          </FormGroup> : ''}
-          
-          {manualAdd ? <Button type="submit" variant="contained" color="primary">
-            Add
+              {manualAdd || (!alreadyAdded && currentBaseUrl && currentBaseUrl.length > 0) ?
+                <Fragment><FormGroup row>
+                  <FormControlLabel
+                    control={<Switch checked={blockAlways} onChange={onChangeSwitch} name="blockAlways"
+                                     color="primary"/>}
+                    label="Block Always"
+                  />
+                </FormGroup>
+                  
+                  {/*<Box display="flex">*/}
+                  {/*  <Box m="auto">*/}
+                  {/*    {!blockAlways ? 'or' : ''}*/}
+                  {/*  </Box>*/}
+                  {/*</Box>*/}
+                  {!blockAlways ? <Typography variant="caption" display="block" gutterBottom>
+                    or
+                  </Typography> : ''}
+                </Fragment> : ''}
+              
+              {!blockAlways && (manualAdd || (!alreadyAdded && currentBaseUrl && currentBaseUrl.length > 0)) ?
+                <FormGroup row>
+                  <Typography
+                    gutterBottom>{`Block Interval (${blockInterval} ${blockInterval > 1 ? ' mins' : ' min'})`}</Typography>
+                  <Slider
+                    onChange={onChangeSlider}
+                    ValueLabelComponent={ValueLabelComponent}
+                    aria-label={`Block Interval (${blockInterval} min)`}
+                    value={blockInterval}
+                    max={60}
+                  />
+                </FormGroup> : ''}
+              
+              {manualAdd ? <Button type="submit" variant="contained" color="primary">
+                Add
+              </Button> : ''}
+            </form>
+          </CardContent>
+        </Card>
+      
+      </Grid>
+      
+      <Grid item xs={12}>
+        <ButtonGroup size="small" aria-label="small outlined button group">
+          {!manualAdd ? <Button
+            color="primary"
+            className={classes.button}
+            onClick={toggleAddManually}
+            startIcon={<Icon>add_circle_outline</Icon>}>
+            Add Manually
           </Button> : ''}
-        </form>
-        
-        {!manualAdd ? <Button
-          color="primary"
-          className={classes.button}
-          onClick={toggleAddManually}
-          startIcon={<Icon>add_circle_outline</Icon>}>
-          Add Manually
-        </Button> : ''}
-        
+          <Button color="primary"
+                  startIcon={<Icon>list</Icon>}
+                  onClick={() => history.push('/list.html')}
+          >View Blocked List</Button>
+        </ButtonGroup>
       </Grid>
     </Grid>
   );

@@ -1,5 +1,4 @@
 export const KEY_BLOCKED_URL = 'blocked_url';
-export const CURRENT_TAB_BASE_URL = 'current_base_url';
 
 export const getObject = (key) => {
   let val = localStorage.getItem(key);
@@ -14,7 +13,7 @@ export const setObject = (key, value) =>
 
 export const getBaseUrl = (value) => {
   let pathArray = value.split('/');
-  let protocol = pathArray[0];
+  // let protocol = pathArray[0];
   let host = pathArray[2];
   return host;
 };
