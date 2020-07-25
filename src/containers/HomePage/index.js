@@ -208,7 +208,7 @@ export default function HomePage() {
                     </div>
                   </ListItemSecondaryAction>
                 </ListItem>
-              </List> : 'Nothing to Add'}
+              </List> : (!manualAdd ? 'Nothing to Add' : '')}
             
             <form className={classes.root} onSubmit={submitForm} noValidate autoComplete="off">
               {manualAdd ? <FormGroup row>
@@ -217,7 +217,7 @@ export default function HomePage() {
                   onChange={onChangeField}
                   error={!!errors.url}
                   id="outlined-error-helper-text"
-                  label="Add Url"
+                  label="Add Domain"
                   value={url}
                   helperText={errors.url}
                   variant="outlined"

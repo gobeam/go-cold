@@ -20,14 +20,14 @@ export const getBaseUrl = (value) => {
 
 export const checkIfExistsInArray = (list, key, checkValue) => {
   return list.some(function(el) {
-    return el[key] === checkValue;
+    return el[key] === checkValue || checkValue.includes(el[key]);
   });
 };
 
 export const returnItemFromArray = (list, key, checkValue) => {
-  let item = -1;
+  let item = {};
   for (let i = 0; i < list.length; i++) {
-    if (list[i][key] === checkValue) {
+    if (list[i][key] === checkValue || checkValue.includes(list[i][key])) {
       item = list[i];
       break;
     }
@@ -39,7 +39,7 @@ export const returnItemFromArray = (list, key, checkValue) => {
 export const returnIndexOf = (list, key, checkValue) => {
   let index = -1;
   for (let i = 0; i < list.length; i++) {
-    if (list[i][key] === checkValue) {
+    if (list[i][key] === checkValue || checkValue.includes(list[i][key])) {
       index = i;
       break;
     }

@@ -43,7 +43,7 @@ export function* validateForm() {
   let model = {
     url: {
       value: url,
-      validator: ['isValidURL', 'isNotEmpty'],
+      validator: ['isValidDomain', 'isNotEmpty'],
     },
   };
   
@@ -73,7 +73,6 @@ export function* checkIfCurrentUrlAdded() {
   }
 }
 
-
 export function* getCurrentTabUrl() {
   let current_tab_url = yield getCurrentTabDomain().next().value;
   let validDomainCheck = checkIfValidDomain(current_tab_url);
@@ -88,8 +87,8 @@ export function* addUrlToBlockedList() {
   const blockedAlways = yield select(makeBlockAlwaysSelector());
   const blockedInterval = yield select(makeBlockIntervalSelector());
   let list = getObject(KEY_BLOCKED_URL);
-  let baseUrl = getBaseUrl(url);
-  if (list.blocked_url.includes(baseUrl)) {
+  let exists = checkIfExistsInArray(list.blocked_url, 'url', url);
+  if (exists) {
     return yield put(
       enqueueSnackbarAction({
         message: DUPLICATE,
