@@ -19,13 +19,18 @@ Sometime involuntarily we tend to click or try to access those sites and go into
 
 ## Installation
 1. For People without Programming language knowledge:
-* Go to this [release url]().
+* Go to this [release url](https://github.com/gobeam/go-cold/releases/download/v1.0.0/build.zip).
 * Download the zip file and unzip it you will find js and html files inside that folder.
 * Open Chrome browser and enter following url in search bar: chrome://extensions
+
 <kbd>![](images/step1.png)</kbd>
+
 * After that you will  see this page as show in image below which will list all extension available in you chrome browser and make sure Developer Mode is turned on as shown in image with Red arrow.
+
 <kbd>![](images/step2.png)</kbd>
+
 * Now after that Click on **Load Unpacked** button which is n top left corner and it will give option to choose file now choose folder you unzipped after downloading zipped file. Voila your extension has been loaded now you can use it easily.
+
 <kbd>![](images/step3.png)</kbd>
 
 1. For People with Programming language knowledge who want to build themselves:
@@ -39,21 +44,31 @@ npm run build
 ## Features
 1) Add domain to block list automatically.
 * If you have already opened web page then if you click on extension you will get popup as shown in image below and domain will be automatically provided to block and you can click on + button to add it to block list. You will have option to Block it always which you can toggle with switch or change timer upto 60 minute (you can choose only one option).
+
 <kbd>![](images/step4.png)</kbd>
 
 2) Add domain manually
 * Click on **ADD MANUALLY** button on below left corner to add manually
+
 <kbd>![](images/step5.png)</kbd>
+
 * After clicking it a form like below will show up where you can add domain name as you want and the domain name must be valid and can be added twice. Add it on timer or block always option will also available but you can only choose one.
+
 <kbd>![](images/step6png)</kbd>
+
 * Now After clicking add if your blocked page is opened in your tab it will redirect to blocked page.
+
 <kbd>![](images/step7.png)</kbd>
+
 * Congratulation you have blocked domain successfully. Now if you try to open that url in any other tab it will load blocked page. 
 
 3) View List
 * To view list of blocked sites click on **VIEW BLOCKED LIST** button on below right corner.
+
 <kbd>![](images/step8.png)</kbd>
+
 * After clicking button you can view blocked page list. Where you can see how much time is remaining if time is set and if it is blocked always or not. You can go back to dashboard by clicking on **DASHBOARD** button.
+
 <kbd>![](images/step9.png)</kbd>
 
 4) Delete Page From Block List
@@ -61,6 +76,7 @@ npm run build
 
 5)Turn on Dark Mode
 * To turn Dark Mode toggle dark mode switch on top left corner.
+
 <kbd>![](images/step10.png)</kbd>
 
 ## Build With
