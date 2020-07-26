@@ -20,7 +20,7 @@ Addiction to social media and video viewing & sharing platforms is common proble
 Sometime involuntarily we tend to click or try to access those sites and go into deep loop and waste our time. It doesn't matter when you are free but it will definitely waste your precious time when you are trying to concentrate in your studies while doing online research or incase of programmer during their work. In order to minimize this issue this Chrome Extension will block all the url you have listed on it on basis of timer or always.
 
 ## Installation
-1. For People without Programming language knowledge:
+1. Normal Installation:
 * Download zip file from [here](https://github.com/gobeam/go-cold/releases/download/v1.0.0/build.zip).
 * Download the zip file and unzip it you will find js and html files inside that folder.
 * Open Chrome browser and enter following url in search bar: chrome://extensions
@@ -35,7 +35,7 @@ Sometime involuntarily we tend to click or try to access those sites and go into
 
 <kbd>![](images/step3.png)</kbd>
 
-1. For People with Programming language knowledge who want to build themselves:
+1. Advanced Installation:
 * Clone the repository.
 * Run following command to build source code:
 ```bash
