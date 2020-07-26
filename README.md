@@ -44,7 +44,7 @@ npm run build
 * From Chrome extension manager page click on **Load Unpacked** and select build folder to load extension.
 
 ## Firefox Installation
-1)open Firefox browser and visit [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) now click on **Load Temporary Add-on** and select manifest.json from build folder. That's all extension will be loaded.
+1. Open Firefox browser and visit [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) now click on **Load Temporary Add-on** and select manifest.json from build folder. That's all now the extension will be loaded.
 
 ## Features
 1) Add domain to block list automatically.
