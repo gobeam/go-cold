@@ -1,7 +1,7 @@
 # Go Cold Website Blocker
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/huchenme/hacker-tab-extension/blob/master/LICENSE)
 
-**Go Cold** is Chrome Browser Extension which you can use to block website with options to block it on timer or block it always. (You can also use it on FireFox Browser).
+**Go Cold** is Chrome & Mozilla Browser Extension with which you can block website with options to block it on timer or block it always.
 _If you like this extension please give a star_
 
 * [Why?](#why)
@@ -16,8 +16,8 @@ _If you like this extension please give a star_
 <kbd>![](images/demo.gif)</kbd>
 
 ## Why
-Addiction to social media and video viewing & sharing platforms is common problem for lots of us.
-Sometime involuntarily we tend to click or try to access those sites and go into deep loop and waste our time. It doesn't matter when you are free but it will definitely hampers when you are trying to concentrate in your studies while doing online research or for programmer during their work. In order to minimize this issue this Chrome Extension will block all the url you have listed on it on basis of timer or always.
+Addiction to social media and video viewing & sharing platforms is common problem nowdays.
+Sometime involuntarily we tend to click or try to access those sites and go into deep loop and waste our time. It doesn't matter when you are free but it will definitely waste your precious time when you are trying to concentrate in your studies while doing online research or incase of programmer during their work. In order to minimize this issue this Chrome Extension will block all the url you have listed on it on basis of timer or always.
 
 ## Installation
 1. For People without Programming language knowledge:
