@@ -6,8 +6,10 @@ _If you like this extension please give a star_
 
 * [Why?](#why)
 * [Installation](#installation)
+* [FireFox Installation](#firefox-installation)
 * [Features](#features)
 * [Build With](#build-with)
+* [Acknowledgement](#acknowledgement)
 * [Contributing](#contributing)
 * [License](#license)
 
@@ -40,6 +42,9 @@ Sometime involuntarily we tend to click or try to access those sites and go into
 npm run build
 ```
 * From Chrome extension manager page click on **Load Unpacked** and select build folder to load extension.
+
+## Firefox Installation
+1)open Firefox browser and visit [about:debugging#/runtime/this-firefox](about:debugging#/runtime/this-firefox) now click on **Load Temporary Add-on** and select manifest.json from build folder. That's all extension will be loaded.
 
 ## Features
 1) Add domain to block list automatically.
@@ -83,13 +88,14 @@ npm run build
 1) React.js (Redux Saga)
 2) React Material UI
 
+## Acknowledgement
+Blocked page html we inspired from this link [https://codepen.io/leenalavanya/pen/OogLRd](https://codepen.io/leenalavanya/pen/OogLRd) . If you know Html & CSS you make change in blocked.html file inside build folder and make your custom blocked page.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
-
 ## License
-
 Released under the MIT License - see `LICENSE.txt` for details.
 
